@@ -1,3 +1,32 @@
+## XRP Setting 
+기본적인 설정방법은 BUILD.md를 따라가시면 됩니다.
+그 전에 development environment setting [XRP](https://github.com/XRPLF/rippled/blob/develop/docs/build/environment.md) 을 완료해주세요.
+아래는 통일사항입니다.
+* master branch
+* 아래 명령어가 실행되지 않을 시 다음과 같이 설정합니다. (참고 conan2 change command [Conan](https://docs.conan.io/2/reference/commands.html#reference-commands))
+  ```
+  conan profile new default --detect
+  conan profile detect
+  
+  ```
+* 아래 명령어가 실행되지 않을 시 다음과 같이 설정합니다.
+  ```
+  conan profile update settings.compiler.cppstd=20 default
+  echo "compiler.cppstd=20" >> ~/.conan2/profiles/default
+
+  ```
+  
+* Debug Mode, single-config generator로 설정합니다.
+* 아래 명령어가 실행되지 않을 시
+  ```
+  ./rippled --unittest
+  ```
+  build 디렉토리 안에 rippled location을 확인합니다. 
+  Conan 관련 에러가 발생한다면(apple clang 15) BUILD.md의 TroubleShooting을 확인해주세요.
+  
+  ---
+
+
 # The XRP Ledger
 
 The [XRP Ledger](https://xrpl.org/) is a decentralized cryptographic ledger powered by a network of peer-to-peer nodes. The XRP Ledger uses a novel Byzantine Fault Tolerant consensus algorithm to settle and record transactions in a secure distributed database without a central operator.
